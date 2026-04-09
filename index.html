@@ -12,6 +12,7 @@
             --bg-color: #f9f9f9;
             --text-color: #333;
             --accent-color: #e2e8f0;
+            --star-color: #f39c12;
         }
 
         body {
@@ -23,16 +24,34 @@
             line-height: 1.6;
         }
 
+        /* --- HEADER --- */
         header {
             background-color: var(--primary-color);
             color: white;
-            padding: 1rem 5%;
+            padding: 0.8rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-headshot {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid white;
+            background-color: #e2e8f0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         .logo { font-size: 1.5rem; font-weight: bold; }
@@ -47,9 +66,30 @@
 
         nav a:hover { color: var(--secondary-color); }
 
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-rating {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .header-rating .stars {
+            color: var(--star-color);
+            letter-spacing: 1px;
+        }
+
         .lang-toggle button {
             background-color: transparent; border: 1px solid white; color: white;
-            padding: 5px 10px; cursor: pointer; border-radius: 4px;
+            padding: 5px 10px; cursor: pointer; border-radius: 4px; transition: 0.3s;
         }
 
         .lang-toggle button.active {
@@ -58,160 +98,205 @@
 
         section { padding: 4rem 5%; }
 
-        /* --- HERO & ABOUT --- */
+        /* --- FEATURED HERO SECTION --- */
         .hero {
-            background-color: #34495e; color: white; text-align: center; padding: 6rem 5%;
+            background-color: #34495e; 
+            color: white; 
+            padding: 5rem 5%;
+            overflow: hidden;
         }
 
-        .hero h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 40px;
+        }
+
+        .hero-text {
+            flex: 1;
+            text-align: left;
+        }
+
+        .hero-text h1 { 
+            font-size: 3rem; 
+            margin-bottom: 15px; 
+            line-height: 1.2;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: #d1d8e0;
+            margin-bottom: 30px;
+        }
 
         .btn {
             display: inline-block; background-color: var(--secondary-color); color: white;
-            padding: 10px 20px; text-decoration: none; border-radius: 5px;
-            margin-top: 20px; font-weight: bold; transition: background 0.3s;
+            padding: 12px 25px; text-decoration: none; border-radius: 5px;
+            font-weight: bold; font-size: 1.1rem; transition: background 0.3s;
         }
         .btn:hover { background-color: #219653; }
 
-        /* --- NEW PORTFOLIO LAYOUT --- */
-        .portfolio-section { background-color: white; }
-        
-        .project-row {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-            margin-bottom: 5rem;
-            padding-bottom: 3rem;
-            border-bottom: 1px solid var(--accent-color);
-        }
-
-        .project-row:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .project-text {
+        .hero-visual {
             flex: 1;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .project-category {
-            color: var(--secondary-color);
-            text-transform: uppercase;
+        .hero-main-headshot {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            background-color: #e2e8f0;
+        }
+
+        /* Floating Review Card in Hero */
+        .hero-review-card {
+            position: absolute;
+            bottom: -20px;
+            right: 0;
+            background: white;
+            color: var(--text-color);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            max-width: 280px;
+            border-left: 5px solid var(--secondary-color);
+            text-align: left;
+            z-index: 10;
+        }
+
+        .hero-review-card .stars {
+            color: var(--star-color);
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+
+        .hero-review-card p {
+            font-size: 0.95rem;
+            font-style: italic;
+            color: #555;
+            margin: 0 0 10px 0;
+            line-height: 1.4;
+        }
+
+        .hero-review-card .reviewer {
             font-weight: bold;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
-            margin-bottom: 5px;
-        }
-
-        .project-text h3 {
-            font-size: 1.8rem;
-            margin-top: 0;
-            margin-bottom: 15px;
+            font-size: 0.85rem;
             color: var(--primary-color);
         }
 
+        /* --- ABOUT SECTION --- */
+        .about-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-container h2 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        /* --- PORTFOLIO LAYOUT --- */
+        .portfolio-section { background-color: white; }
+        
+        .project-row {
+            display: flex; align-items: center; gap: 40px; margin-bottom: 5rem;
+            padding-bottom: 3rem; border-bottom: 1px solid var(--accent-color);
+        }
+
+        .project-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+        .project-text { flex: 1; }
+
+        .project-category {
+            color: var(--secondary-color); text-transform: uppercase; font-weight: bold;
+            letter-spacing: 1px; font-size: 0.9rem; margin-bottom: 5px;
+        }
+
+        .project-text h3 {
+            font-size: 1.8rem; margin-top: 0; margin-bottom: 15px; color: var(--primary-color);
+        }
+
         .skills-blurb {
-            font-size: 1.1rem;
-            color: #555;
-            margin-bottom: 20px;
-            border-left: 4px solid var(--secondary-color);
-            padding-left: 15px;
+            font-size: 1.1rem; color: #555; margin-bottom: 20px;
+            border-left: 4px solid var(--secondary-color); padding-left: 15px;
         }
 
         .example-intro {
-            font-weight: 500;
-            background: var(--bg-color);
-            padding: 15px;
-            border-radius: 5px;
-            display: inline-block;
+            font-weight: 500; background: var(--bg-color); padding: 15px;
+            border-radius: 5px; display: inline-block;
         }
 
-        /* --- FADE TRANSITION IMAGE CONTAINER --- */
         .project-image-container {
-            flex: 1;
-            max-width: 500px;
-            position: relative;
-            aspect-ratio: 4/3;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            flex: 1; max-width: 500px; position: relative; aspect-ratio: 4/3;
+            border-radius: 8px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.15);
             cursor: pointer;
         }
 
         .fade-img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: opacity 0.6s ease-in-out;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; transition: opacity 0.6s ease-in-out;
         }
 
-        .img-after {
-            opacity: 0; /* Hidden by default */
-        }
-
-        /* Hover effect triggers the crossfade */
-        .project-image-container:hover .img-after {
-            opacity: 1; 
-        }
-        .project-image-container:hover .img-before {
-            opacity: 0;
-        }
+        .img-after { opacity: 0; }
+        .project-image-container:hover .img-after { opacity: 1; }
+        .project-image-container:hover .img-before { opacity: 0; }
 
         .hover-badge {
-            position: absolute;
-            bottom: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0,0,0,0.7);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            z-index: 10;
-            pointer-events: none;
-            transition: opacity 0.3s;
+            position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%);
+            background: rgba(0,0,0,0.7); color: white; padding: 8px 16px;
+            border-radius: 20px; font-size: 0.85rem; font-weight: bold; z-index: 10;
+            pointer-events: none; transition: opacity 0.3s;
         }
+        .project-image-container:hover .hover-badge { opacity: 0; }
 
-        .project-image-container:hover .hover-badge {
-            opacity: 0; /* Hides badge when hovering */
+        /* --- REVIEWS SECTION --- */
+        .reviews-section { background-color: var(--bg-color); text-align: center; }
+        .rating-summary { font-size: 1.2rem; margin-bottom: 3rem; color: #555; }
+        .rating-summary strong { font-size: 1.5rem; color: var(--primary-color); }
+        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; text-align: left; }
+        .review-card {
+            background: white; padding: 30px; border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid var(--secondary-color);
+            display: flex; flex-direction: column; justify-content: space-between;
         }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .project-row {
-                flex-direction: column;
-            }
-            .project-image-container {
-                width: 100%;
-                max-width: 100%;
-            }
-        }
+        .review-text { font-style: italic; color: #555; margin-bottom: 20px; flex-grow: 1; }
+        .reviewer-info { border-top: 1px solid #eee; padding-top: 15px; }
+        .reviewer-name { font-weight: bold; color: var(--primary-color); margin: 0; }
+        .review-service { font-size: 0.85rem; color: #888; margin: 5px 0 0 0; }
 
         /* --- CONTACT & FOOTER --- */
-        .contact-container { 
-            display: flex; 
-            justify-content: center; 
-            align-items: center;
-        }
+        .contact-section { background-color: white; }
+        .contact-container { display: flex; justify-content: center; align-items: center; }
         .contact-info { 
-            background: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            text-align: center;
-            width: 100%;
-            max-width: 500px;
+            background: var(--bg-color); padding: 40px; border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; width: 100%; max-width: 500px;
         }
-        .contact-info h3 {
-            color: var(--primary-color);
-            margin-top: 0;
-        }
-        
+        .contact-info h3 { color: var(--primary-color); margin-top: 0; }
         footer { background-color: var(--primary-color); color: white; text-align: center; padding: 2rem 5%; }
+
+        /* Responsive Design */
+        @media (max-width: 1000px) {
+            .hero-content { flex-direction: column; text-align: center; }
+            .hero-text { text-align: center; }
+            .hero-review-card { position: relative; bottom: 0; right: auto; margin-top: -30px; margin-left: auto; margin-right: auto; }
+            .project-row { flex-direction: column; }
+            .project-image-container { width: 100%; max-width: 100%; }
+            .header-right { flex-direction: column; gap: 10px; }
+            header { flex-wrap: wrap; gap: 15px; justify-content: center; text-align: center;}
+            .header-left { flex-direction: column; gap: 5px; }
+            nav ul { flex-wrap: wrap; justify-content: center; }
+        }
 
         /* Language visibility utility classes */
         .fr { display: block; }
@@ -223,38 +308,66 @@
 <body>
 
     <header>
-        <div class="logo">Eco Multi-services</div>
+        <div class="header-left">
+            <img src="headshot.png" alt="Raoul Afonso" class="header-headshot" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'50\' height=\'50\'><circle cx=\'25\' cy=\'25\' r=\'25\' fill=\'%23ccc\'/></svg>';">
+            <div class="logo">Eco Multi-services</div>
+        </div>
         <nav>
             <ul>
                 <li><a href="#about"><span class="fr">À Propos</span><span class="en">About Me</span></a></li>
                 <li><a href="#portfolio"><span class="fr">Réalisations</span><span class="en">Portfolio</span></a></li>
+                <li><a href="#reviews"><span class="fr">Avis</span><span class="en">Reviews</span></a></li>
                 <li><a href="#contact"><span class="fr">Contact</span><span class="en">Contact</span></a></li>
             </ul>
         </nav>
-        <div class="lang-toggle">
-            <button id="btn-fr" class="active" onclick="setLang('fr')">FR</button>
-            <button id="btn-en" onclick="setLang('en')">EN</button>
+        <div class="header-right">
+            <div class="header-rating">
+                <span class="fr">Avis clients</span>
+                <span class="en">Reviews</span>
+                <span class="stars" style="color:var(--star-color);">★★★★★</span> 4.9/5
+            </div>
+            <div class="lang-toggle">
+                <button id="btn-fr" class="active" onclick="setLang('fr')">FR</button>
+                <button id="btn-en" onclick="setLang('en')">EN</button>
+            </div>
         </div>
     </header>
 
     <section class="hero">
-        <h1 class="fr">Votre Bricoleur et Expert en Rénovation de Confiance</h1>
-        <h1 class="en">Your Trusted Handyman & Renovation Expert</h1>
-        
-        <p class="fr">Rénovations intérieures et extérieures professionnelles à Morières-lès-Avignon et sa région.</p>
-        <p class="en">Professional indoor and outdoor renovations in Morières-lès-Avignon and the surrounding region.</p>
-        
-        <a href="#contact" class="btn">
-            <span class="fr">Me Contacter</span>
-            <span class="en">Contact Me</span>
-        </a>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="fr">Votre Bricoleur et Expert en Rénovation de Confiance</h1>
+                <h1 class="en">Your Trusted Handyman & Renovation Expert</h1>
+                
+                <p class="fr">Rénovations intérieures et extérieures professionnelles à Morières-lès-Avignon et sa région.</p>
+                <p class="en">Professional indoor and outdoor renovations in Morières-lès-Avignon and the surrounding region.</p>
+                
+                <a href="#contact" class="btn">
+                    <span class="fr">Me Contacter</span>
+                    <span class="en">Contact Me</span>
+                </a>
+            </div>
+
+            <div class="hero-visual">
+                <img src="headshot.png" alt="Raoul Afonso" class="hero-main-headshot" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'320\' height=\'320\'><circle cx=\'160\' cy=\'160\' r=\'160\' fill=\'%23ccc\'/></svg>';">
+                
+                <div class="hero-review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="fr">« Travail soigné et minutieux. Raule est vraiment un professionnel de confiance. »</p>
+                    <p class="en">"Neat and meticulous work. Raule is truly a professional you can trust."</p>
+                    <div class="reviewer">- Patrice P.</div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section id="about">
-        <h2 class="fr">À Propos de Moi</h2>
-        <h2 class="en">About Me</h2>
-        <p class="fr">Je suis un professionnel passionné par le bâtiment avec une solide expertise technique. J'accompagne les propriétaires dans tous leurs projets de rénovation globale ou de réaménagement : maçonnerie, menuiserie, plâtrerie, pose de revêtements et plomberie. J'aborde chaque chantier avec rigueur et propose des devis clairs et précis avant tout début d'intervention, garantissant des finitions de haute qualité et sans surprise.</p>
-        <p class="en">I am a passionate building professional with solid technical expertise. I assist homeowners with comprehensive renovation and remodeling projects: masonry, carpentry, plastering, floor coverings, and plumbing. I approach every job with rigor and provide clear, precise quotes before any work begins, guaranteeing high-quality finishes with no surprises.</p>
+        <div class="about-container">
+            <h2 class="fr">À Propos de Moi</h2>
+            <h2 class="en">About Me</h2>
+            <p class="fr">Je suis un professionnel passionné par le bâtiment avec une solide expertise technique. J'accompagne les propriétaires dans tous leurs projets de rénovation globale ou de réaménagement : maçonnerie, menuiserie, plâtrerie, pose de revêtements et plomberie. J'aborde chaque chantier avec rigueur et propose des devis clairs et précis avant tout début d'intervention, garantissant des finitions de haute qualité et sans surprise.</p>
+            <p class="en">I am a passionate building professional with solid technical expertise. I assist homeowners with comprehensive renovation and remodeling projects: masonry, carpentry, plastering, floor coverings, and plumbing. I approach every job with rigor and provide clear, precise quotes before any work begins, guaranteeing high-quality finishes with no surprises.</p>
+        </div>
     </section>
 
     <section id="portfolio" class="portfolio-section">
@@ -380,10 +493,73 @@
                 <img src="11b.jpg" alt="After Painting" class="fade-img img-after">
             </div>
         </div>
-
     </section>
 
-    <section id="contact" style="background-color: #f1f5f9;">
+    <section id="reviews" class="reviews-section">
+        <h2 class="fr">Témoignages & Avis Clients</h2>
+        <h2 class="en">Client Reviews & Testimonials</h2>
+        
+        <div class="rating-summary">
+            <span class="fr">Noté <strong>4.9/5</strong> sur la base de 91 avis</span>
+            <span class="en">Rated <strong>4.9/5</strong> based on 91 reviews</span>
+        </div>
+
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div>
+                    <div class="stars" style="color:var(--star-color); font-size:1.2rem; margin-bottom:15px; letter-spacing:2px;">★★★★★</div>
+                    <p class="review-text fr">« C'est le deuxième projet que je confie à Raul, et je le recommande vivement. Il maîtrise son métier, est très consciencieux, attentif et respectueux de ses engagements. »</p>
+                    <p class="review-text en">"This is the second project I've entrusted to Raul, and I highly recommend him. He's a master of his craft, very conscientious, attentive, and respectful of his commitments."</p>
+                </div>
+                <div class="reviewer-info">
+                    <p class="reviewer-name">Christel A.</p>
+                    <p class="review-service fr">Pose de parquet / Revêtement de sol</p>
+                    <p class="review-service en">Parquet flooring / Floor covering</p>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <div>
+                    <div class="stars" style="color:var(--star-color); font-size:1.2rem; margin-bottom:15px; letter-spacing:2px;">★★★★★</div>
+                    <p class="review-text fr">« Très bon artisan, rapide et minutieux, bon rapport qualité-prix. »</p>
+                    <p class="review-text en">"Very good craftsman, fast and meticulous, good value for money."</p>
+                </div>
+                <div class="reviewer-info">
+                    <p class="reviewer-name">Antoine P.</p>
+                    <p class="review-service fr">Pose de Carrelage</p>
+                    <p class="review-service en">Tiling Services</p>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <div>
+                    <div class="stars" style="color:var(--star-color); font-size:1.2rem; margin-bottom:15px; letter-spacing:2px;">★★★★★</div>
+                    <p class="review-text fr">« Travail soigné et minutieux. Raule est vraiment un professionnel de confiance. »</p>
+                    <p class="review-text en">"Neat and meticulous work. Raule is truly a professional you can trust."</p>
+                </div>
+                <div class="reviewer-info">
+                    <p class="reviewer-name">Patrice P.</p>
+                    <p class="review-service fr">Maçonnerie</p>
+                    <p class="review-service en">Masonry</p>
+                </div>
+            </div>
+            
+            <div class="review-card">
+                <div>
+                    <div class="stars" style="color:var(--star-color); font-size:1.2rem; margin-bottom:15px; letter-spacing:2px;">★★★★★</div>
+                    <p class="review-text fr">« Travail très réactif et méticuleux. Je les recommande vivement. »</p>
+                    <p class="review-text en">"Very responsive and meticulous work. I highly recommend them."</p>
+                </div>
+                <div class="reviewer-info">
+                    <p class="reviewer-name">Francine C.</p>
+                    <p class="review-service fr">Jardinage & Extérieur</p>
+                    <p class="review-service en">Gardening & Outdoors</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
         <h2 class="fr" style="text-align: center;">Contactez-Moi</h2>
         <h2 class="en" style="text-align: center;">Contact Me</h2>
         
